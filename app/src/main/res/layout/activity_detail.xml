@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity"
+    android:layout_weight="1">
+
+    <TableLayout
+        android:layout_width="match_parent"  android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:layout_margin="5dp">
+
+        <TableRow
+            android:id="@+id/tableRowNome"
+            android:layout_width="match_parent"  android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textViewNomeLabel"
+                android:text="Nome">
+            </TextView>
+            <TextView
+                android:id="@+id/textViewNome">
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowHabilidades"
+            android:layout_width="match_parent"  android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textViewHabilidadesLabel"
+                android:text="Habilidades">
+            </TextView>
+            <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listViewHabilidades"></ListView>
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>
