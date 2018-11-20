@@ -18,7 +18,8 @@
                 android:id="@+id/button"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:text="Adicionar"/>
+                android:onClick="cadastrar"
+                android:text="Cadastrar" />
 
             <Button
                 android:id="@+id/button5"
