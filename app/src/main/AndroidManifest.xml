@@ -14,7 +14,7 @@
             android:label="Dashboard" />
         <activity
             android:name=".SplashScreen"
-            android:label="Splash Screen">
+            android:label="BD-Mutantes">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +36,8 @@
         <activity
             android:name=".FormMutanteActivity"
             android:label="Editar Mutante" />
-        <activity android:name=".PesquisarActivity"></activity>
+        <activity android:name=".PesquisarActivity"
+            android:label="Pesquisar Mutante"></activity>
     </application>
 
 </manifest>

@@ -27,17 +27,24 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRowHabilidades"
+            android:id="@+id/tableRowHabilidads"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/textViewHabilidadesLabel"
                 android:text="Habilidades: ">
             </TextView>
-            <ListView
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowHabilidades"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/listViewHabilidades"></ListView>
+            android:layout_height="wrap_content">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/listViewHabilidades"
+                android:layout_span="2"></ListView>
         </TableRow>
     </TableLayout>
 
