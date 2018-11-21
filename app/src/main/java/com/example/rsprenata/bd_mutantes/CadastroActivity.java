@@ -78,16 +78,22 @@ public class CadastroActivity extends AppCompatActivity {
             Toast.makeText(CadastroActivity.this, "Adicione uma habilidade !", Toast.LENGTH_SHORT).show();
         } else {
             DatabaseConnector databaseConnector = new DatabaseConnector(this);
+            databaseConnector.open();
+            if (databaseConnector.getNomeMutantesByName(nome).size() != 0) {
+                Toast.makeText(CadastroActivity.this, "Já existe um mutante com esse nome !", Toast.LENGTH_SHORT).show();
+                databaseConnector.close();
+            } else {
+                databaseConnector.close();
+                Mutante mutante = new Mutante();
+                mutante.setNome(nome);
+                mutante.setHabilidades(habilidades);
 
-            Mutante mutante = new Mutante();
-            mutante.setNome(nome);
-            mutante.setHabilidades(habilidades);
+                databaseConnector.insertMutante(mutante);
+                databaseConnector.insertHabilidades(mutante.getId(), habilidades);
 
-            databaseConnector.insertMutante(mutante);
-            databaseConnector.insertHabilidades(mutante.getId(), habilidades);
-
-            setResult(Activity.RESULT_OK);
-            finish();
+                setResult(Activity.RESULT_OK);
+                finish();
+            }
         }
     }
 }

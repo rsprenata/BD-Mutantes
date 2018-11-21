@@ -94,20 +94,27 @@ public class FormMutanteActivity extends AppCompatActivity {
             } else if (habilidades.size() < 1) {
                 Toast.makeText(FormMutanteActivity.this, "Adicione uma habilidade !", Toast.LENGTH_SHORT).show();
             } else {
-                AsyncTask<Object, Object, Object> saveMutantTask = new AsyncTask<Object, Object, Object>() {
-                    @Override
-                    protected Object doInBackground(Object... params) {
-                        saveMutant();
-                        return null;
-                    }
+                DatabaseConnector databaseConnector = new DatabaseConnector(FormMutanteActivity.this);
+                databaseConnector.open();
+                if (databaseConnector.getNomeMutantesByName(nome).size() != 0) {
+                    Toast.makeText(FormMutanteActivity.this, "Já existe um mutante com esse nome !", Toast.LENGTH_SHORT).show();
+                } else {
+                    AsyncTask<Object, Object, Object> saveMutantTask = new AsyncTask<Object, Object, Object>() {
+                        @Override
+                        protected Object doInBackground(Object... params) {
+                            saveMutant();
+                            return null;
+                        }
 
-                    @Override
-                    protected void onPostExecute(Object result) {
-                        setResult(Activity.RESULT_OK);
-                        finish();
-                    }
-                };
-                saveMutantTask.execute((Object[]) null);
+                        @Override
+                        protected void onPostExecute(Object result) {
+                            setResult(Activity.RESULT_OK);
+                            finish();
+                        }
+                    };
+                    saveMutantTask.execute((Object[]) null);
+                }
+                databaseConnector.close();
             }
         }
     };
