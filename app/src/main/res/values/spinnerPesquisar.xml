@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pesquisar_array">
+        <item>Nome</item>
+        <item>Habilidade</item>
+    </string-array>
+</resources>

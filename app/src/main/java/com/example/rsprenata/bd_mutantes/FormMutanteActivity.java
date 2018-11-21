@@ -90,9 +90,9 @@ public class FormMutanteActivity extends AppCompatActivity {
         public void onClick(View v) {
             String nome = editTextNome.getText().toString();
             if (nome.length() < 1 ) {
-                Toast.makeText(FormMutanteActivity.this, "Digite um nome !", Toast.LENGTH_SHORT);
+                Toast.makeText(FormMutanteActivity.this, "Digite um nome !", Toast.LENGTH_SHORT).show();
             } else if (habilidades.size() < 1) {
-                Toast.makeText(FormMutanteActivity.this, "Adicione uma habilidade !", Toast.LENGTH_SHORT);
+                Toast.makeText(FormMutanteActivity.this, "Adicione uma habilidade !", Toast.LENGTH_SHORT).show();
             } else {
                 AsyncTask<Object, Object, Object> saveMutantTask = new AsyncTask<Object, Object, Object>() {
                     @Override

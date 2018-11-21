@@ -25,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void pesquisar(View view) {
+        Intent intent = new Intent(this, PesquisarActivity.class);
+        startActivity(intent);
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CADASTRAR_MUTANTE) {
             if (resultCode == RESULT_OK) {
@@ -33,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setMessage("Mutante adicionado com sucesso !");
                 builder.setPositiveButton("OK", null);
                 builder.show();
-            } else  {
+            } else if (resultCode != RESULT_CANCELED)  {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Erro");
                 builder.setMessage("Erro ao cadastrar mutante !");

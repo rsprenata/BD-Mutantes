@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FormMutanteActivity"
+    tools:context=".PesquisarActivity"
     android:layout_weight="1">
 
     <TableLayout
@@ -13,57 +13,54 @@
         android:layout_margin="5dp">
 
         <TableRow
-            android:id="@+id/tableRowNome"
+            android:id="@+id/tableRowPesquisarPor"
             android:layout_width="match_parent"  android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/textViewNomeLabel"
-                android:text="Nome">
+                android:text="Pesquisar por: ">
             </TextView>
+            <Spinner
+                android:id="@+id/spinnerPesquisar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowPesquisa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
             <EditText
-                android:id="@+id/editTextNome">
+                android:id="@+id/editTextPesquisa"
+                android:layout_span="2">
             </EditText>
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRowAdicionarHabilidade"
+            android:id="@+id/tableRowPesquisar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:text="">
-            </TextView>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.1"
-                android:onClick="adicionarHabilidade"
-                android:text="Adicionar habilidade" />
+                android:onClick="pesquisar"
+                android:text="Pesquisar"
+                android:layout_span="2" />
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRowHabilidades"
+            android:id="@+id/tableRowMutantes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/textViewHabilidadesLabel"
-                android:text="Habilidades">
+                android:id="@+id/textViewMutantesLabel"
+                android:text="Mutantes: ">
             </TextView>
             <ListView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/listViewHabilidades"></ListView>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRowSalvar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Salvar mutante"
-                android:id="@+id/saveMutantButton"/>
+                android:layout_height="200dp"
+                android:id="@+id/listViewMutantes"></ListView>
         </TableRow>
     </TableLayout>
 

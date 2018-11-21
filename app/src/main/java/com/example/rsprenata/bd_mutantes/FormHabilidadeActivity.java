@@ -65,7 +65,7 @@ public class FormHabilidadeActivity extends AppCompatActivity {
             };
             saveMutantTask.execute((Object[]) null);*/
         } else {
-            Toast.makeText(this, "Digite a habilidade !", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Digite a habilidade !", Toast.LENGTH_SHORT).show();
         }
     }
 

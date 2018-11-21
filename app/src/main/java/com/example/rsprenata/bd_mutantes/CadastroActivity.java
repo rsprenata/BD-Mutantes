@@ -73,9 +73,9 @@ public class CadastroActivity extends AppCompatActivity {
     public void cadastrarMutante(View view) {
         String nome = editTextNome.getText().toString();
         if (nome.length() < 1 ) {
-            Toast.makeText(this, "Digite um nome !", Toast.LENGTH_SHORT);
+            Toast.makeText(CadastroActivity.this, "Digite um nome !", Toast.LENGTH_SHORT).show();
         } else if (habilidades.size() < 1) {
-            Toast.makeText(this, "Adicione uma habilidade !", Toast.LENGTH_SHORT);
+            Toast.makeText(CadastroActivity.this, "Adicione uma habilidade !", Toast.LENGTH_SHORT).show();
         } else {
             DatabaseConnector databaseConnector = new DatabaseConnector(this);
 

@@ -70,6 +70,40 @@ public class DatabaseConnector {
 		return database.query("mutantes", new String[]{"_id", "nome"}, null, null, null, null, "nome");
 	}
 
+    public List<String> getNomeMutantesByName(String nome) {
+        Cursor cursor =  database.query("mutantes", new String[]{"_id", "nome"}, "nome like '%"+nome+"%'", null, null, null, "nome");
+        List<String> nomeMutantes = new ArrayList<String>();
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()) {
+                nomeMutantes.add(cursor.getString(cursor.getColumnIndex("nome")));
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+        }
+
+        return nomeMutantes;
+    }
+
+    public List<String> getNomeMutantesByHabilidade(String habilidade) {
+        Cursor cursor =  database.rawQuery("SELECT m.nome FROM mutantes m JOIN habilidades h ON h.mutante_id = m._id WHERE h.habilidade like '%"+habilidade+"%'", null);
+        List<String> nomeMutantes = new ArrayList<String>();
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()) {
+                nomeMutantes.add(cursor.getString(cursor.getColumnIndex("nome")));
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+        }
+
+        return nomeMutantes;
+    }
+
 	public Cursor getOneMutant(Integer id) {
 		return database.query("mutantes", null, "_id=" + id, null, null, null, null);
 	}
