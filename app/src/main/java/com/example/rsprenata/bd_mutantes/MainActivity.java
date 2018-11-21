@@ -30,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void sair(View view) {
+        moveTaskToBack(true);
+        finish();
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CADASTRAR_MUTANTE) {
             if (resultCode == RESULT_OK) {
