@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseConnector {
@@ -61,25 +62,65 @@ public class DatabaseConnector {
 		editMutant.put("nome", mutante.getNome());
 
 		open();
-		database.update("mutantes", editMutant, "id=" + mutante.getId(), null);
+		database.update("mutantes", editMutant, "_id=" + mutante.getId(), null);
 		close();
 	}
 
 	public Cursor getAllMutants() {
-		return database.query("mutantes", new String[]{"id", "nome"}, null, null, null, null, "nome");
+		return database.query("mutantes", new String[]{"_id", "nome"}, null, null, null, null, "nome");
 	}
 
 	public Cursor getOneMutant(Integer id) {
-		return database.query("mutantes", null, "id=" + id, null, null, null, null);
+		return database.query("mutantes", null, "_id=" + id, null, null, null, null);
 	}
+
+	public Mutante carregarMutante(Integer id) {
+	    Mutante mutante = null;
+        open();
+	    Cursor cursor = getOneMutant(id);
+	    if (cursor.getCount() > 0) {
+	        mutante = new Mutante();
+	        List<String> habilidades = new ArrayList<String>();
+            cursor.moveToFirst();
+
+            int nomeIndex = cursor.getColumnIndex("nome");
+            int idIndex = cursor.getColumnIndex("_id");
+            mutante.setId(cursor.getInt(idIndex));
+            mutante.setNome(cursor.getString(nomeIndex));
+
+            cursor = getSkillsMutant(cursor.getInt(idIndex));
+
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()) {
+                habilidades.add(cursor.getString(cursor.getColumnIndex("habilidade")));
+                cursor.moveToNext();
+            }
+            mutante.setHabilidades(habilidades);
+
+            cursor.close();
+        }
+        close();
+
+	    return mutante;
+    }
+
+    public Cursor getSkillsMutant(Integer mutante_id) {
+        return database.query("habilidades", new String[]{"mutante_id as _id", "habilidade"}, "mutante_id=" + mutante_id, null, null, null, null);
+    }
 
 	public void deleteMutant(Integer id) {
 		open();
-		database.delete("mutantes", "id=" + id, null);
+		database.delete("mutantes", "_id=" + id, null);
 	}
 
-	private class DatabaseOpenHelper extends SQLiteOpenHelper {
-		private static final String CREATE_QUERY = "CREATE TABLE mutantes (id integer primary key autoincrement, nome TEXT);";
+    public void deleteSkills(Integer mutante_id) {
+        open();
+        database.delete("habilidades", "mutante_id=" + mutante_id, null);
+    }
+
+
+    private class DatabaseOpenHelper extends SQLiteOpenHelper {
+		private static final String CREATE_QUERY = "CREATE TABLE mutantes (_id integer primary key autoincrement, nome TEXT);";
         private static final String CREATE_QUERY2 = "CREATE TABLE habilidades (mutante_id integer, habilidade TEXT);";
 
 		public DatabaseOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

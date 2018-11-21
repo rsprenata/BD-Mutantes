@@ -26,6 +26,12 @@
             android:label="Cadastro" />
         <activity android:name=".FormHabilidadeActivity"
             android:label="Adicionar Habilidade"></activity>
+        <activity android:name=".ListarActivity"
+            android:label="Listar Mutantes"></activity>
+        <activity android:name=".DetailActivity"
+            android:label="Detalhes Mutante"></activity>
+        <activity android:name=".FormMutanteActivity"
+            android:label="Editar Mutante"></activity>
     </application>
 
 </manifest>

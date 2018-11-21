@@ -1,15 +1,18 @@
 package com.example.rsprenata.bd_mutantes;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.AdapterView;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.SimpleCursorAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListarActivity extends ListActivity {
@@ -54,24 +57,24 @@ public class ListarActivity extends ListActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.activity_listar, menu);
+        inflater.inflate(R.menu.activity_detail, menu);
         return true;
     }
 
-    OnItemClickListener viewMutantListener = new OnItemClickListener() {
+    AdapterView.OnItemClickListener viewMutantListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-            Intent viewMutant = new Intent(ListarActivity.this, DetailMutant.class);
-            viewMutant.putExtra("row_id", arg3);
+            Intent viewMutant = new Intent(ListarActivity.this, DetailActivity.class);
+            viewMutant.putExtra("row_id", (int)arg3);
             startActivity(viewMutant);
         }
-    }
+    };
 
-    private class GetMutantsTask extendes AsyncTask<Object, Object, Cursor> {
+    private class GetMutantsTask extends AsyncTask<Object, Object, Cursor> {
         DatabaseConnector databaseConnector = new DatabaseConnector(ListarActivity.this);
 
         @Override
-        proteced Cursor doInBackground(Object... params) {
+        protected Cursor doInBackground(Object... params) {
             databaseConnector.open();
             return databaseConnector.getAllMutants();
         }

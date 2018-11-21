@@ -26,15 +26,45 @@
 
         <TableRow
             android:id="@+id/tableRowHabilidades"
-            android:layout_width="match_parent"  android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textViewHabilidadesLabel"
+                android:text="">
+            </TextView>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:onClick="adicionarHabilidade"
+                android:text="Adicionar habilidade" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowHabilidades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/textViewHabilidadesLabel"
                 android:text="Habilidades">
             </TextView>
             <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="200dp"
             android:id="@+id/listViewHabilidades"></ListView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Salvar mutante"
+                android:id="@+id/saveMutantButton"/>
         </TableRow>
     </TableLayout>
 

@@ -25,6 +25,7 @@
                 android:id="@+id/button5"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:onClick="listar"
                 android:text="Listar" />
         </TableRow>
 

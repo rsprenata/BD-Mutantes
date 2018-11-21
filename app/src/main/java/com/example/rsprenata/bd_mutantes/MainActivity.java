@@ -20,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_CADASTRAR_MUTANTE);
     }
 
+    public void listar(View view) {
+        Intent intent = new Intent(this, ListarActivity.class);
+        startActivity(intent);
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CADASTRAR_MUTANTE) {
             if (resultCode == RESULT_OK) {
